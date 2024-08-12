@@ -11,14 +11,6 @@ const { NextResponse } = require("next/server");
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 // Set up OpenAI API configuration
 // const configuration = new Configuration();
@@ -28,6 +20,11 @@ const openai = new OpenAI({
 
 // Define a route to handle the text generation request
 app.post("/generate", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   try {
     const data = req.body; // Get the JSON body of the incoming request
     const systemPrompt = "Your system prompt goes here"; // Customize the system prompt
