@@ -11,6 +11,7 @@ const { NextResponse } = require("next/server");
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.options("*", cors()); // Allow preflight requests for all routes
 
 // Set up OpenAI API configuration
 // const configuration = new Configuration();
